@@ -86,6 +86,18 @@ export default function Quiz({ chapterId, onBack }) {
   const questions = DEMO_QUESTIONS[chapterId] || []
   const question = questions[currentQuestion]
 
+  // Fonction pour réinitialiser le quiz
+  const resetQuiz = () => {
+    setCurrentQuestion(0)
+    setSelectedAnswer(null)
+    setShowExplanation(false)
+    setScore(0)
+    setAnswers([])
+    setQuizComplete(false)
+    setEarnedXP(0)
+    setEarnedCrystals(0)
+  }
+
   const handleAnswer = (answerIndex) => {
     if (showExplanation) return
     setSelectedAnswer(answerIndex)
@@ -206,7 +218,7 @@ export default function Quiz({ chapterId, onBack }) {
                 Retour au dashboard
               </button>
               <button
-                onClick={() => window.location.reload()}
+                onClick={resetQuiz}
                 className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium py-3 px-6 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all"
               >
                 Recommencer
